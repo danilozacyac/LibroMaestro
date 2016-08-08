@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="LibroMaestro.Tesis.IntegraTesis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             d:DesignHeight="700"
+             d:DesignWidth="900"
+             Background="White"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+    <Border BorderBrush="#1ba1e2"
+            BorderThickness="2"
+            CornerRadius="8">
+        <Grid>
+            <Label Margin="54,20,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Núm. Carpeta:" />
+            <TextBox x:Name="TxtNCarpeta"
+                     Width="120"
+                     Height="23"
+                     Margin="145,20,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding NumCarpeta,
+                                    Mode=TwoWay}" />
+            <Label Margin="316,20,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="De la tesis:" />
+            <telerik:RadNumericUpDown x:Name="NumInicio"
+                                      Width="44"
+                                      Margin="387,20,0,0"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      IsInteger="True"
+                                      Maximum="10000"
+                                      Minimum="1"
+                                      Value="{Binding TesisInicio,
+                                                      Mode=TwoWay}" />
+            <Label Margin="459,20,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="a la" />
+            <telerik:RadNumericUpDown x:Name="NumFinal"
+                                      Width="44"
+                                      Margin="496,20,0,0"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      IsInteger="True"
+                                      Maximum="10000"
+                                      Minimum="1"
+                                      Value="{Binding TesisFinal,
+                                                      Mode=TwoWay}" />
+            <Custom:ToggleSwitch x:Name="ChkEjecutoria"
+                                 Margin="54,63,0,0"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 Content="¿Tiene ejecutoria?" />
+            <GroupBox Width="793"
+                      Height="438"
+                      Margin="54,103,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Header="Elementos que integran la documentación">
+                <telerik:RadListBox x:Name="LstIntegracion"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    ItemsSource="{Binding}">
+                    <telerik:RadListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="0,5,0,0"
+                                      Content="{Binding Descripcion}"
+                                      IsChecked="{Binding IsSelected}" />
+                        </DataTemplate>
+                    </telerik:RadListBox.ItemTemplate>
+                </telerik:RadListBox>
+            </GroupBox>
+            <Label Margin="54,546,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Observaciones:" />
+            <TextBox x:Name="TxtObservaciones"
+                     Width="793"
+                     Height="85"
+                     Margin="54,577,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding Observaciones,
+                                    Mode=TwoWay}"
+                     TextWrapping="Wrap" />
+            <Image Width="37"
+                   Height="26"
+                   Margin="270,20,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Source="/LibroMaestro;component/Resources/question_64.png"
+                   ToolTip="Ingresar el número de la carpeta a la que pertenece esta tesis (Notación Romana)" />
+            <Label Margin="487,69,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Archivo escaneado:" />
+            <TextBox x:Name="TxtSupportFile"
+                     Width="203"
+                     Height="23"
+                     Margin="604,69,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     IsEnabled="False"
+                     Text="{Binding FileName,
+                                    Mode=TwoWay}" />
+
+        </Grid>
+    </Border>
+</UserControl>

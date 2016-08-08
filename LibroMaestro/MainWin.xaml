@@ -1,0 +1,74 @@
+﻿<telerik:RadWindow x:Class="LibroMaestro.MainWin"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   Width="900"
+                   Height="300"
+                   Header=""
+                   WindowState="Maximized"
+                   Loaded="RadWindow_Loaded">
+
+    <telerik:RadWindow.Resources>
+
+        <HierarchicalDataTemplate x:Key="ObrasChildTemplate" ItemsSource="{Binding OrganismosLibro}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Organismo}" TextWrapping="Wrap" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="CategoryTemplate"
+                                  ItemTemplate="{StaticResource ObrasChildTemplate}"
+                                  ItemsSource="{Binding OrganismosLibro}">
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Margin="2"
+                           VerticalAlignment="Center"
+                           Foreground="{telerik:Windows8Resource ResourceKey=MarkerBrush}"
+                           Text="{Binding Descripcion}" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <Style TargetType="telerik:RadTreeViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
+
+    </telerik:RadWindow.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <telerik:RadRibbonView VerticalAlignment="Top" ApplicationButtonVisibility="Collapsed" ApplicationName="Libros electrónicos de la CCST">
+            <telerik:RadRibbonTab Header="General">
+                <telerik:RadRibbonGroup Header="Tesis">
+                    <telerik:RadRibbonButton Name="RBtnAddTesis"
+                                             Content="Agregar"
+                                             LargeImage="Resources/1425495838_add-notes.png"
+                                             Size="Large" />
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+        </telerik:RadRibbonView>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".3*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <telerik:RadTreeView x:Name="treeCircuito"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 ItemTemplate="{StaticResource CategoryTemplate}"
+                                 ItemsSource="{Binding}" />
+
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch" />
+
+        </Grid>
+
+
+
+    </Grid>
+</telerik:RadWindow>
