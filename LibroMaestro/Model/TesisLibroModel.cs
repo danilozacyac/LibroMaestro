@@ -142,18 +142,18 @@ namespace LibroMaestro.Model
                     dr["Observaciones"] = tesis.Observaciones;
                     dr["NumEje"] = tesis.NumEje;
                     dr["NumVotos"] = tesis.NumVotos;
-
+                    dr["FechaRegistro"] = DateTime.Now;
                     dataSet.Tables["Tesis"].Rows.Add(dr);
 
                     //dataAdapter.UpdateCommand = connectionEpsOle.CreateCommand();
                     dataAdapter.InsertCommand = connection.CreateCommand();
                     dataAdapter.InsertCommand.CommandText =
                                                            "INSERT INTO Tesis(IdTesis,IdInstancia,IdOrganismo,IdEpoca,IdMateria,NumCarpeta,TesisInicio,TesisFin," +
-                                                           "ControlRecibida,ControlAprobada,Clave,NumTesis,Tatj,Ius,Rubro,Precedentes,Publicado,Fojas,Cancelada,CambioMateria," + 
-                                                           "FileName,Ejecutoria,Elementos,Observaciones,NumEje,NumVotos)" +
+                                                           "ControlRecibida,ControlAprobada,Clave,NumTesis,Tatj,Ius,Rubro,Precedentes,Publicado,Fojas,Cancelada,CambioMateria," +
+                                                           "FileName,Ejecutoria,Elementos,Observaciones,NumEje,NumVotos,FechaRegistro)" +
                                                            " VALUES(@IdTesis,@IdInstancia,@IdOrganismo,@IdEpoca,@IdMateria,@NumCarpeta,@TesisInicio,@TesisFin," +
                                                            "@ControlRecibida,@ControlAprobada,@Clave,@NumTesis,@Tatj,@Ius,@Rubro,@Precedentes,@Publicado,@Fojas,@Cancelada,@CambioMateria," +
-                                                           "@FileName,@Ejecutoria,@Elementos,@Observaciones,@NumEje,@NumVotos)";
+                                                           "@FileName,@Ejecutoria,@Elementos,@Observaciones,@NumEje,@NumVotos,@FechaRegistro)";
 
                     dataAdapter.InsertCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
                     dataAdapter.InsertCommand.Parameters.Add("@IdInstancia", OleDbType.Numeric, 0, "IdInstancia");
@@ -181,7 +181,7 @@ namespace LibroMaestro.Model
                     dataAdapter.InsertCommand.Parameters.Add("@Observaciones", OleDbType.VarChar, 0, "Observaciones");
                     dataAdapter.InsertCommand.Parameters.Add("@NumEje", OleDbType.Numeric, 0, "NumEje");
                     dataAdapter.InsertCommand.Parameters.Add("@NumVotos", OleDbType.Numeric, 0, "NumVotos");
-
+                    dataAdapter.InsertCommand.Parameters.Add("@FechaRegistro", OleDbType.Date, 0, "FechaRegistro");
                     dataAdapter.Update(dataSet, "Tesis");
 
                     dataSet.Dispose();
