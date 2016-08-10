@@ -1,7 +1,8 @@
-﻿
+﻿using System.ComponentModel;
+
 namespace LibroMaestro.Dto
 {
-    public class TesisLibro
+    public class TesisLibro : INotifyPropertyChanged
     {
         private int idTesis;
         private int idInstancia;
@@ -20,13 +21,15 @@ namespace LibroMaestro.Dto
         private string rubro;
         private string precedentes;
         private string publicado;
-        private int fojas;
-        private int cancelada;
+        private int fojas =1;
+        private int cancelada = 0;
         private bool cambioMateria = false;
         private string fileName;
         private bool tieneEjecutoria = false;
         private long elementos;
         private string observaciones;
+        private int numEje;
+        private int numVotos;
 
         public int IdTesis
         {
@@ -37,6 +40,7 @@ namespace LibroMaestro.Dto
             set
             {
                 this.idTesis = value;
+                this.OnPropertyChanged("IdTesis");
             }
         }
 
@@ -48,7 +52,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.idInstancia = value;
+                this.idInstancia = value; this.OnPropertyChanged("IdInstancia");
             }
         }
 
@@ -60,7 +64,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.idOrganismo = value;
+                this.idOrganismo = value; this.OnPropertyChanged("IdOrganismo");
             }
         }
 
@@ -72,7 +76,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.idEpoca = value;
+                this.idEpoca = value; this.OnPropertyChanged("IdEpoca");
             }
         }
 
@@ -84,7 +88,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.idMateria = value;
+                this.idMateria = value; this.OnPropertyChanged("IdMateria");
             }
         }
 
@@ -96,7 +100,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.numCarpeta = value;
+                this.numCarpeta = value; this.OnPropertyChanged("NumCarpeta");
             }
         }
 
@@ -108,7 +112,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.tesisInicio = value;
+                this.tesisInicio = value; this.OnPropertyChanged("TesisInicio");
             }
         }
 
@@ -120,7 +124,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.tesisFin = value;
+                this.tesisFin = value; this.OnPropertyChanged("TesisFin");
             }
         }
 
@@ -132,7 +136,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.recibida = value;
+                this.recibida = value; this.OnPropertyChanged("Recibida");
             }
         }
 
@@ -144,7 +148,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.aprobada = value;
+                this.aprobada = value; this.OnPropertyChanged("Aprobada");
             }
         }
 
@@ -156,7 +160,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.clave = value;
+                this.clave = value; this.OnPropertyChanged("Clave");
             }
         }
 
@@ -168,7 +172,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.numTesis = value;
+                this.numTesis = value; this.OnPropertyChanged("NumTesis");
             }
         }
 
@@ -180,7 +184,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.tatj = value;
+                this.tatj = value; this.OnPropertyChanged("Tatj");
             }
         }
 
@@ -192,7 +196,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.ius = value;
+                this.ius = value; this.OnPropertyChanged("Ius");
             }
         }
 
@@ -204,7 +208,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.rubro = value;
+                this.rubro = value; this.OnPropertyChanged("Rubro");
             }
         }
 
@@ -216,7 +220,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.precedentes = value;
+                this.precedentes = value; this.OnPropertyChanged("Precedentes");
             }
         }
 
@@ -228,7 +232,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.publicado = value;
+                this.publicado = value; this.OnPropertyChanged("Publicado");
             }
         }
 
@@ -240,7 +244,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.fojas = value;
+                this.fojas = value; this.OnPropertyChanged("Fojas");
             }
         }
 
@@ -252,7 +256,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.cancelada = value;
+                this.cancelada = value; this.OnPropertyChanged("Cancelada");
             }
         }
 
@@ -264,7 +268,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.cambioMateria = value;
+                this.cambioMateria = value; this.OnPropertyChanged("CambioMateria");
             }
         }
 
@@ -276,7 +280,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.fileName = value;
+                this.fileName = value; this.OnPropertyChanged("FileName");
             }
         }
 
@@ -288,7 +292,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.tieneEjecutoria = value;
+                this.tieneEjecutoria = value; this.OnPropertyChanged("TieneEjecutoria");
             }
         }
 
@@ -300,7 +304,7 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.elementos = value;
+                this.elementos = value; this.OnPropertyChanged("Elementos");
             }
         }
 
@@ -312,8 +316,44 @@ namespace LibroMaestro.Dto
             }
             set
             {
-                this.observaciones = value;
+                this.observaciones = value; this.OnPropertyChanged("Observaciones");
             }
         }
+
+        public int NumEje
+        {
+            get
+            {
+                return this.numEje;
+            }
+            set
+            {
+                this.numEje = value; this.OnPropertyChanged("NumEje");
+            }
+        }
+
+        public int NumVotos
+        {
+            get
+            {
+                return this.numVotos;
+            }
+            set
+            {
+                this.numVotos = value; this.OnPropertyChanged("NumVotos");
+            }
+        }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        
+        #endregion // INotifyPropertyChanged Members
     }
 }

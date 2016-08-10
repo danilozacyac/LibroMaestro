@@ -1,20 +1,15 @@
-﻿using MantesisVerIusCommonObjects.Dto;
+﻿using LibroMaestro.Dto;
+using MantesisVerIusCommonObjects.Dto;
 using MantesisVerIusCommonObjects.Model;
 using MantesisVerIusCommonObjects.Utilities;
+using ScjnUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LibroMaestro.Tesis
 {
@@ -23,7 +18,15 @@ namespace LibroMaestro.Tesis
     /// </summary>
     public partial class DatosTesis : UserControl
     {
-        
+        private TesisLibro tesisContext;
+
+        public void GetContext(ref TesisLibro tesisContext)
+        {
+            this.tesisContext = tesisContext;
+            this.DataContext = tesisContext;
+        }
+
+
 
         public DatosTesis()
         {
@@ -32,13 +35,13 @@ namespace LibroMaestro.Tesis
 
        
 
+       
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             CbxMateria.DataContext = from n in new DatosCompModel().GetCompartidosMateria()
                                      where n.IdDato < 7
                                      select n;
-            
-
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
@@ -51,8 +54,8 @@ namespace LibroMaestro.Tesis
                 return;
             }
 
-            TxtRubro.Text = tesis.Rubro;
-            TxtCIdentificacion.Text = tesis.Tesis;
+            tesisContext.Rubro = tesis.Rubro;
+            tesisContext.Clave = tesis.Tesis;
             CbxMateria.SelectedValue = tesis.Materia1;
 
             if (tesis.TaTj == 1)
@@ -92,8 +95,8 @@ namespace LibroMaestro.Tesis
                 pre.Add(p.Substring(0, index));
             }
 
-            TxtPrecedentes.Text = string.Join(",\r\n", pre);
-            TxtPublicado.Text = pre[0];
+            tesisContext.Precedentes = string.Join(",\r\n", pre);
+            tesisContext.Publicado = pre[0];
         }
 
         /// <summary>
@@ -123,6 +126,11 @@ namespace LibroMaestro.Tesis
         private void BtnCancelada_Checked(object sender, RoutedEventArgs e)
         {
             this.DoControlsEnable(true);
+        }
+
+        private void TxtIus_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = StringUtilities.IsTextAllowed(e.Text);
         }
     }
 }

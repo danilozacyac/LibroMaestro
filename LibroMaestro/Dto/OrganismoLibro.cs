@@ -12,6 +12,20 @@ namespace LibroMaestro.Dto
     {
         private ObservableCollection<TesisLibro> tesis;
 
+        private int idInstancia;
+
+        public int IdInstancia
+        {
+            get
+            {
+                return this.idInstancia;
+            }
+            set
+            {
+                this.idInstancia = value;
+            }
+        }
+
         public ObservableCollection<TesisLibro> Tesis
         {
             get

@@ -23,7 +23,7 @@
                                     Checked="RadPublicada_Checked"
                                     Content="Publicada"
                                     GroupName="Publicacion" />
-            <telerik:RadRadioButton x:Name="BtnCancelada"
+            <telerik:RadRadioButton x:Name="RadCancelada"
                                     Width="70                                 "
                                     Height="Auto"
                                     Margin="411,24,0,0"
@@ -43,18 +43,21 @@
                      Margin="121,134,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
+                     PreviewTextInput="TxtIus_PreviewTextInput"
                      Text="{Binding Ius}" />
             <Button x:Name="BtnBuscar"
-                    Width="30"
+                    Width="27"
+                    Height="25"
                     Margin="269,135,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Click="BtnBuscar_Click"
-                    Content="" />
+                    Click="BtnBuscar_Click">
+                <Image Source="/LibroMaestro;component/Resources/search_32.png" />
+            </Button>
             <Label Margin="43,83,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Content="Organismo:" />
+                   Content="Órgano:" />
             <TextBox x:Name="TxtOrganismo"
                      Width="716"
                      Height="23"
@@ -146,7 +149,7 @@
             <Label Margin="45,388,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Content="Rubro:" />
+                   Content="Título y subtítulo:" />
             <Label Margin="46,527,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"

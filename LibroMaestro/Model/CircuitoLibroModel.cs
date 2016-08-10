@@ -25,16 +25,18 @@ namespace LibroMaestro.Model
                 libro.OrganismosLibro = new List<OrganismoLibro>();
                 libro.OrgCircuito = new List<Organismos>();
 
-                List<Organismos> orgs = new OrganismosModel().GetOrganismos(circuito);
+                libro.OrganismosLibro = new OrganismoModel().GetOrganismos(libro);
 
-                foreach (Organismos org in orgs)
-                {
-                    OrganismoLibro newOrg = new OrganismoLibro();
-                    newOrg.IdOrganismo = org.IdOrganismo;
-                    newOrg.Organismo = org.Organismo;
-                    libro.OrgCircuito.Add(org);
-                    libro.OrganismosLibro.Add(newOrg);
-                }
+                //List<Organismos> orgs = new OrganismosModel().GetOrganismos(circuito);
+
+                //foreach (Organismos org in orgs)
+                //{
+                //    OrganismoLibro newOrg = new OrganismoLibro();
+                //    newOrg.IdOrganismo = org.IdOrganismo;
+                //    newOrg.Organismo = org.Organismo;
+                //    libro.OrgCircuito.Add(org);
+                //    libro.OrganismosLibro.Add(newOrg);
+                //}
 
                 cirLibro.Add(libro);
             }

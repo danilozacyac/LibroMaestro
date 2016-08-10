@@ -3,10 +3,10 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="900"
-                   Height="300"
+                   Height="500"
                    Header=""
-                   WindowState="Maximized"
-                   Loaded="RadWindow_Loaded">
+                   Loaded="RadWindow_Loaded"
+                   WindowState="Maximized">
 
     <telerik:RadWindow.Resources>
 
@@ -39,13 +39,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <telerik:RadRibbonView VerticalAlignment="Top" ApplicationButtonVisibility="Collapsed" ApplicationName="Libros electrónicos de la CCST">
+        <telerik:RadRibbonView VerticalAlignment="Top"
+                               ApplicationButtonVisibility="Collapsed"
+                               ApplicationName="Libros electrónicos de la CCST">
             <telerik:RadRibbonTab Header="General">
-                <telerik:RadRibbonGroup Header="Tesis">
+                <telerik:RadRibbonGroup x:Name="GrpTesis" Header="Tesis">
                     <telerik:RadRibbonButton Name="RBtnAddTesis"
+                                             Click="RBtnAddTesis_Click"
                                              Content="Agregar"
                                              LargeImage="Resources/1425495838_add-notes.png"
                                              Size="Large" />
+                    <telerik:RadRibbonButton Name="RBtnVerLibro"
+                                             Content="Ver Libro"
+                                             LargeImage="Resources/pdf_128.png"
+                                             Size="Large" Click="RBtnVerLibro_Click" />
                 </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
         </telerik:RadRibbonView>
@@ -60,13 +67,51 @@
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch"
                                  ItemTemplate="{StaticResource CategoryTemplate}"
-                                 ItemsSource="{Binding}" />
+                                 ItemsSource="{Binding}"
+                                 SelectionChanged="treeCircuito_SelectionChanged" />
 
             <GridSplitter Grid.Column="1"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch" />
 
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <telerik:RadGridView x:Name="GTesis"
+                                     Grid.Row="1"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     AutoGenerateColumns="False"
+                                     CanUserDeleteRows="False"
+                                     CanUserInsertRows="False"
+                                     IsReadOnly="True"
+                                     ItemsSource="{Binding}"
+                                     RowIndicatorVisibility="Collapsed"
+                                     ShowGroupPanel="False" SelectionChanged="GTesis_SelectionChanged">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Width="100"
+                                                    DataMemberBinding="{Binding Ius}"
+                                                    Header="Reg. Digital" />
+                        <telerik:GridViewDataColumn Width="*"
+                                                    DataMemberBinding="{Binding Rubro}"
+                                                    Header="Rubro" />
+                        <telerik:GridViewDataColumn Width="80"
+                                                    DataMemberBinding="{Binding NumCarpeta}"
+                                                    Header="Carpeta"
+                                                    IsFilterable="True" />
+                        <telerik:GridViewDataColumn Width="80"
+                                                    DataMemberBinding="{Binding Fojas}"
+                                                    Header="Fojas" />
+
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+            </Grid>
+
         </Grid>
+
 
 
 

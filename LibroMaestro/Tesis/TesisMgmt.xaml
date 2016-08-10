@@ -30,7 +30,8 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="BtnGuardar_Click"
-                Content="Siguiente" />
+                Content="Siguiente"
+                Style="{StaticResource BlueButton}" />
         <Button x:Name="BtnAnterior"
                 Grid.Row="1"
                 Width="105"
@@ -40,6 +41,7 @@
                 VerticalAlignment="Top"
                 Click="BtnAnterior_Click"
                 Content="Anterior"
+                Style="{StaticResource BlueButton}"
                 Visibility="Collapsed" />
         <Button x:Name="BtnCancelar"
                 Grid.Row="1"
@@ -49,6 +51,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="BtnCancelar_Click"
-                Content="Cancelar" />
+                Content="Cancelar"
+                Style="{StaticResource BlueButton}" />
     </Grid>
 </telerik:RadWindow>
