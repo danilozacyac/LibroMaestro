@@ -1,13 +1,10 @@
-﻿using LibroMaestro.Dto;
-using ScjnUtilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LibroMaestro.Dto;
+using ScjnUtilities;
 
 namespace LibroMaestro.Model
 {

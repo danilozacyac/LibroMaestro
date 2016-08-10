@@ -1,15 +1,14 @@
-﻿using LibroMaestro.Dto;
-using MantesisVerIusCommonObjects.Dto;
-using MantesisVerIusCommonObjects.Model;
-using MantesisVerIusCommonObjects.Utilities;
-using ScjnUtilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
+using LibroMaestro.Dto;
+using MantesisVerIusCommonObjects.Dto;
+using MantesisVerIusCommonObjects.Model;
+using MantesisVerIusCommonObjects.Utilities;
+using ScjnUtilities;
 
 namespace LibroMaestro.Tesis
 {

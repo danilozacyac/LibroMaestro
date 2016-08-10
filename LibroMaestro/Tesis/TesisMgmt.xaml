@@ -5,8 +5,9 @@
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="1000"
                    Height="800"
-                   Header="TesisMgmt"
-                   Loaded="RadWindow_Loaded">
+                   Header="Tesis"
+                   Loaded="RadWindow_Loaded"
+                   WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

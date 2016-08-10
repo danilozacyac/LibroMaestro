@@ -50,10 +50,10 @@
         </Setter>
     </Style>
 
-    <!--<Style x:Key="ColumnaNumerica" TargetType="telerik:GridViewCell">
+    <Style x:Key="ColumnaNumerica" TargetType="telerik:GridViewCell">
         <Setter Property="Background" Value="{telerik:Windows8Resource ResourceKey=AccentBrush}" />
         <Setter Property="Foreground" Value="{telerik:Windows8Resource ResourceKey=MainBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
-    </Style>-->
+    </Style>
 
 </ResourceDictionary>

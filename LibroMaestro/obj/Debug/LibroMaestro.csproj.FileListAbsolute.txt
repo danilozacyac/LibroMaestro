@@ -65,3 +65,5 @@ C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\
 C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\obj\Debug\Theme\AppTheme.baml
 C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\bin\Debug\Telerik.Windows.Controls.GridView.dll
 C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\bin\Debug\Telerik.Windows.Controls.GridView.xml
+C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\bin\Debug\UIControls.dll
+C:\Users\lavega\Documents\Visual Studio 2013\Projects\LibroMaestro\LibroMaestro\bin\Debug\UIControls.pdb

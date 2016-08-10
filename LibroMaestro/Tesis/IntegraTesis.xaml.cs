@@ -1,19 +1,10 @@
-﻿using LibroMaestro.Dto;
-using LibroMaestro.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LibroMaestro.Dto;
+using LibroMaestro.Model;
 
 namespace LibroMaestro.Tesis
 {
@@ -98,7 +89,7 @@ namespace LibroMaestro.Tesis
             dialog.Filter = "PDF Files (*.pdf)|*.pdf";
             dialog.Title = "Selecciona el archivo escaneado";
             dialog.RestoreDirectory = true;
-            ;
+            
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
