@@ -1,6 +1,7 @@
 ﻿<telerik:RadWindow x:Class="LibroMaestro.MainWin"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:Converters="clr-namespace:LibroMaestro.Converter"
                    xmlns:CustomColumn="clr-namespace:LibroMaestro"
                    xmlns:UIControls="clr-namespace:UIControls;assembly=UIControls"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
@@ -9,7 +10,6 @@
                    Header=""
                    Loaded="RadWindow_Loaded"
                    WindowState="Maximized">
-
     <telerik:RadWindow.Resources>
 
         <HierarchicalDataTemplate x:Key="ObrasChildTemplate" ItemsSource="{Binding OrganismosLibro}">
@@ -33,6 +33,8 @@
         <Style TargetType="{x:Type telerik:RadTreeViewItem}">
             <Setter Property="IsExpanded" Value="True" />
         </Style>
+
+        <Converters:TipoTesisConverter x:Key="tipoTesisConv" />
 
     </telerik:RadWindow.Resources>
 
@@ -129,13 +131,15 @@
                                                     IsFilterable="False" />
 
                     </telerik:RadGridView.Columns>
+                    <telerik:RadGridView.RowStyle>
+                        <Style TargetType="{x:Type telerik:GridViewRow}">
+                            <Setter Property="Background" Value="{Binding Tatj, Converter={StaticResource tipoTesisConv}}" />
+                        </Style>
+                    </telerik:RadGridView.RowStyle>
                 </telerik:RadGridView>
             </Grid>
 
         </Grid>
-
-
-
 
     </Grid>
 </telerik:RadWindow>
