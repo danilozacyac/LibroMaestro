@@ -113,7 +113,7 @@ namespace LibroMaestro.Tesis
                 NumVotos.Value = 1;
             }
 
-            this.AgregaElementos(4);
+            this.AgregaElementos(elementId);
             LstIntegracion.DataContext = listaElementos;
 
         }
@@ -136,7 +136,7 @@ namespace LibroMaestro.Tesis
                 NumVotos.Value = 0;
             }
 
-            this.EliminaElementos(4);
+            this.EliminaElementos(elementId);
             LstIntegracion.DataContext = listaElementos;
         }
 
