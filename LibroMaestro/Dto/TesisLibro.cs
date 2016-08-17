@@ -15,7 +15,7 @@ namespace LibroMaestro.Dto
         private string recibida;
         private string aprobada;
         private string clave;
-        private int numTesis;
+        private int numTesis = 0;
         private int tatj;
         private int ius;
         private string rubro;
@@ -23,14 +23,19 @@ namespace LibroMaestro.Dto
         private string publicado;
         private int fojas =1;
         private int cancelada = 0;
-        private bool cambioMateria = false;
         private string fileName;
         private bool tieneEjecutoria = false;
+        private int numEje;
+        private bool tieneVotos = false;
+        private int numVotos;
+        private bool sugModificacion = false;
+        private bool cambioMateria = false;
+        private bool propContradiccion = false;
+        private bool noPublica = false;
         private long elementos;
         private string observaciones;
-        private int numEje;
-        private int numVotos;
-
+        
+        
         public int IdTesis
         {
             get
@@ -341,6 +346,54 @@ namespace LibroMaestro.Dto
             set
             {
                 this.numVotos = value; this.OnPropertyChanged("NumVotos");
+            }
+        }
+
+        public bool TieneVotos
+        {
+            get
+            {
+                return this.tieneVotos;
+            }
+            set
+            {
+                this.tieneVotos = value;
+            }
+        }
+
+        public bool SugModificacion
+        {
+            get
+            {
+                return this.sugModificacion;
+            }
+            set
+            {
+                this.sugModificacion = value;
+            }
+        }
+
+        public bool PropContradiccion
+        {
+            get
+            {
+                return this.propContradiccion;
+            }
+            set
+            {
+                this.propContradiccion = value;
+            }
+        }
+
+        public bool NoPublica
+        {
+            get
+            {
+                return this.noPublica;
+            }
+            set
+            {
+                this.noPublica = value;
             }
         }
 

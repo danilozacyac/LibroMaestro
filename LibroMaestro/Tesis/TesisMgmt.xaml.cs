@@ -12,7 +12,7 @@ namespace LibroMaestro.Tesis
     /// </summary>
     public partial class TesisMgmt
     {
-        int idInstancia, idOrganismo, validaSiguiente = 0,validaGuardar = 0;
+        int validaSiguiente = 0,validaGuardar = 0;
         OrganismoLibro organismo;
 
         TesisLibro tesis;
@@ -125,9 +125,33 @@ namespace LibroMaestro.Tesis
                 return;
             }
 
+            if (UcDatos.RadNumTesis.Value == 0)
+            {
+                MessageBox.Show("Ingresa el número consecutivo correspondiente a esta tesis");
+                return;
+            }
+
             if (!UcDatos.TxtPrecedentes.Text.Contains(UcDatos.TxtPublicado.Text))
             {
                 MessageBox.Show("El precedente publicado no se encuentra dentro de los precedentes");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(UcDatos.TxtNCarpeta.Text) || String.IsNullOrWhiteSpace(UcDatos.TxtNCarpeta.Text))
+            {
+                MessageBox.Show("Ingresa el número de la carpeta en la que se encuentra esta tesis");
+                return;
+            }
+
+            if (UcDatos.NumInicio.Value < 1)
+            {
+                MessageBox.Show("Ingresa el número de tesis con la que inicia esta carpeta");
+                return;
+            }
+
+            if (UcDatos.NumInicio.Value > UcDatos.NumFinal.Value)
+            {
+                MessageBox.Show("El número de tesis final no puede ser inferior al inicial");
                 return;
             }
 
@@ -175,25 +199,6 @@ namespace LibroMaestro.Tesis
 
         private void ValidaElementosIntegracion()
         {
-
-            if (String.IsNullOrEmpty(UcIntegra.TxtNCarpeta.Text) || String.IsNullOrWhiteSpace(UcIntegra.TxtNCarpeta.Text))
-            {
-                MessageBox.Show("Ingresa el número de la carpeta en la que se encuentra esta tesis");
-                return;
-            }
-
-            if (UcIntegra.NumInicio.Value < 1)
-            {
-                MessageBox.Show("Ingresa el número de tesis con la que inicia esta carpeta");
-                return;
-            }
-
-            if (UcIntegra.NumInicio.Value > UcIntegra.NumFinal.Value)
-            {
-                MessageBox.Show("El número de tesis final no puede ser inferior al inicial");
-                return;
-            }
-
             if (String.IsNullOrEmpty(UcIntegra.TxtSupportFile.Text) || String.IsNullOrWhiteSpace(UcIntegra.TxtSupportFile.Text))
             {
                 MessageBox.Show("Ingresa el número de la carpeta en la que se encuentra esta tesis");
@@ -201,12 +206,12 @@ namespace LibroMaestro.Tesis
             }
 
             List<Integracion> sinChecar = (from n in UcIntegra.ListaElementos
-                                           where n.IsSelected == false
+                                           where n.IsSelected == false && n.EsObligatorio == true
                                            select n).ToList();
 
             if (sinChecar.Count() >= 1 && (String.IsNullOrEmpty(UcIntegra.TxtObservaciones.Text) || String.IsNullOrWhiteSpace(UcIntegra.TxtObservaciones.Text)))
             {
-                MessageBox.Show("Indica la razón por la cual este expediente no contiene todos los elementos");
+                MessageBox.Show("Indica la razón por la cual este expediente no contiene todos los elementos obligatorios");
                 return;
             }
             else

@@ -72,6 +72,7 @@ namespace LibroMaestro.Tesis
                 return;
             }
 
+            RadPublicada.IsChecked = true;
             this.GetPrecedentes(tesis.Precedentes);
         }
 

@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LibroMaestro.exe" size="449024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LibroMaestro.exe" size="453632">
       <assemblyIdentity name="LibroMaestro" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2HVThkOCijcShnHv5xQr43JOR2jZ7l1yBtC2fa8dqJw=</dsig:DigestValue>
+        <dsig:DigestValue>18c3U6ZVBu60dp/uUotQfX0p/FewcUAmWTmpwdzPE3k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

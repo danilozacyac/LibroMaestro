@@ -8,7 +8,10 @@ namespace LibroMaestro.Dto
         private bool isSelected;
         private long binaryValue;
         private string descripcion;
-
+        private int tipo;
+        private bool esObligatorio;
+        private int orden;
+        
         public bool IsSelected
         {
             get
@@ -42,6 +45,42 @@ namespace LibroMaestro.Dto
             set
             {
                 this.descripcion = value;
+            }
+        }
+
+        public int Tipo
+        {
+            get
+            {
+                return this.tipo;
+            }
+            set
+            {
+                this.tipo = value;
+            }
+        }
+
+        public bool EsObligatorio
+        {
+            get
+            {
+                return this.esObligatorio;
+            }
+            set
+            {
+                this.esObligatorio = value;
+            }
+        }
+
+        public int Orden
+        {
+            get
+            {
+                return this.orden;
+            }
+            set
+            {
+                this.orden = value;
             }
         }
     }

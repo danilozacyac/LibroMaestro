@@ -135,25 +135,30 @@ namespace LibroMaestro.Model
                     dr["Publicado"] = tesis.Publicado;
                     dr["Fojas"] = tesis.Fojas;
                     dr["Cancelada"] = tesis.Cancelada;
-                    dr["CambioMateria"] = tesis.CambioMateria;
                     dr["FileName"] = Path.GetFileName(newFile);
                     dr["Ejecutoria"] = tesis.TieneEjecutoria;
+                    dr["NumEje"] = tesis.NumEje;
+                    dr["Votos"] = tesis.TieneVotos;
+                    dr["NumVotos"] = tesis.NumVotos;
+                    dr["Modificacion"] = tesis.SugModificacion;
+                    dr["CambioMateria"] = tesis.CambioMateria;
+                    dr["Contradiccion"] = tesis.PropContradiccion;
+                    dr["NoPublica"] = tesis.NoPublica;
                     dr["Elementos"] = tesis.Elementos;
                     dr["Observaciones"] = tesis.Observaciones;
-                    dr["NumEje"] = tesis.NumEje;
-                    dr["NumVotos"] = tesis.NumVotos;
                     dr["FechaRegistro"] = DateTime.Now;
+                    
                     dataSet.Tables["Tesis"].Rows.Add(dr);
 
                     //dataAdapter.UpdateCommand = connectionEpsOle.CreateCommand();
                     dataAdapter.InsertCommand = connection.CreateCommand();
                     dataAdapter.InsertCommand.CommandText =
                                                            "INSERT INTO Tesis(IdTesis,IdInstancia,IdOrganismo,IdEpoca,IdMateria,NumCarpeta,TesisInicio,TesisFin," +
-                                                           "ControlRecibida,ControlAprobada,Clave,NumTesis,Tatj,Ius,Rubro,Precedentes,Publicado,Fojas,Cancelada,CambioMateria," +
-                                                           "FileName,Ejecutoria,Elementos,Observaciones,NumEje,NumVotos,FechaRegistro)" +
+                                                           "ControlRecibida,ControlAprobada,Clave,NumTesis,Tatj,Ius,Rubro,Precedentes,Publicado,Fojas,Cancelada,FileName," +
+                                                           "Ejecutoria,NumEje,Votos,NumVotos,Modificacion,CambioMateria,Contradiccion,NoPublica,Elementos,Observaciones,FechaRegistro)" +
                                                            " VALUES(@IdTesis,@IdInstancia,@IdOrganismo,@IdEpoca,@IdMateria,@NumCarpeta,@TesisInicio,@TesisFin," +
-                                                           "@ControlRecibida,@ControlAprobada,@Clave,@NumTesis,@Tatj,@Ius,@Rubro,@Precedentes,@Publicado,@Fojas,@Cancelada,@CambioMateria," +
-                                                           "@FileName,@Ejecutoria,@Elementos,@Observaciones,@NumEje,@NumVotos,@FechaRegistro)";
+                                                           "@ControlRecibida,@ControlAprobada,@Clave,@NumTesis,@Tatj,@Ius,@Rubro,@Precedentes,@Publicado,@Fojas,@Cancelada,@FileName," +
+                                                           "@Ejecutoria,@NumEje,@Votos,@NumVotos,@Modificacion,@CambioMateria,@Contradiccion,@NoPublica,@Elementos,@Observaciones,@FechaRegistro)";
 
                     dataAdapter.InsertCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
                     dataAdapter.InsertCommand.Parameters.Add("@IdInstancia", OleDbType.Numeric, 0, "IdInstancia");
@@ -174,14 +179,19 @@ namespace LibroMaestro.Model
                     dataAdapter.InsertCommand.Parameters.Add("@Publicado", OleDbType.VarChar, 0, "Publicado");
                     dataAdapter.InsertCommand.Parameters.Add("@Fojas", OleDbType.Numeric, 0, "Fojas");
                     dataAdapter.InsertCommand.Parameters.Add("@Cancelada", OleDbType.Numeric, 0, "Cancelada");
-                    dataAdapter.InsertCommand.Parameters.Add("@CambioMateria", OleDbType.Numeric, 0, "CambioMateria");
                     dataAdapter.InsertCommand.Parameters.Add("@FileName", OleDbType.VarChar, 0, "FileName");
                     dataAdapter.InsertCommand.Parameters.Add("@Ejecutoria", OleDbType.Numeric, 0, "Ejecutoria");
-                    dataAdapter.InsertCommand.Parameters.Add("@Elementos", OleDbType.Numeric, 0, "Elementos");
-                    dataAdapter.InsertCommand.Parameters.Add("@Observaciones", OleDbType.VarChar, 0, "Observaciones");
                     dataAdapter.InsertCommand.Parameters.Add("@NumEje", OleDbType.Numeric, 0, "NumEje");
+                    dataAdapter.InsertCommand.Parameters.Add("@Votos", OleDbType.Numeric, 0, "Votos");
                     dataAdapter.InsertCommand.Parameters.Add("@NumVotos", OleDbType.Numeric, 0, "NumVotos");
+                    dataAdapter.InsertCommand.Parameters.Add("@Modificacion", OleDbType.Numeric, 0, "Modificacion");
+                    dataAdapter.InsertCommand.Parameters.Add("@CambioMateria", OleDbType.Numeric, 0, "CambioMateria");
+                    dataAdapter.InsertCommand.Parameters.Add("@Contradiccion", OleDbType.Numeric, 0, "Contradiccion");
+                    dataAdapter.InsertCommand.Parameters.Add("@NoPublica", OleDbType.Numeric, 0, "NoPublica");
+                    dataAdapter.InsertCommand.Parameters.Add("@Elementos", OleDbType.VarChar, 0, "Elementos");
+                    dataAdapter.InsertCommand.Parameters.Add("@Observaciones", OleDbType.VarChar, 0, "Observaciones");
                     dataAdapter.InsertCommand.Parameters.Add("@FechaRegistro", OleDbType.Date, 0, "FechaRegistro");
+
                     dataAdapter.Update(dataSet, "Tesis");
 
                     dataSet.Dispose();

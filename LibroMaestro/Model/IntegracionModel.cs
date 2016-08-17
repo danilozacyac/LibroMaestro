@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.OleDb;
 using System.Linq;
@@ -13,22 +13,27 @@ namespace LibroMaestro.Model
 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Libro"].ConnectionString;
 
-        public List<Integracion> GetElementosIntegracion(int conEjecutoria )
+        /// <summary>
+        /// Obtiene el listado de elementos que deben integrar una tesis de acuerdo a las opciones indicadas
+        /// </summary>
+        /// <param name="tipoDocto">Indica si es una tesis aislada, jurisprudencia, ejecutoria o voto</param>
+        /// <param name="elementosIntegracion">Indica los elementos que se requieren de acuerdo a la selección</param>
+        /// <returns></returns>
+        public ObservableCollection<Integracion> GetElementosIntegracion(int tipoDocto, int elementosIntegracion )
         {
-            List<Integracion> elementos = new List<Integracion>();
+            ObservableCollection<Integracion> elementos = new ObservableCollection<Integracion>();
 
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Integracion WHERE ConEjecutoria = @ConEjecutoria ORDER BY IdElemento";
-
             try
             {
                 oleConne.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
-                cmd.Parameters.AddWithValue("@ConEjecutoria", conEjecutoria);
+                cmd = new OleDbCommand("SELECT * FROM Integracion WHERE IdDocto = @IdDocto AND Tipo = @Tipo ORDER BY Orden", oleConne);
+                cmd.Parameters.AddWithValue("@IdDocto", tipoDocto);
+                cmd.Parameters.AddWithValue("@Tipo", elementosIntegracion);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -38,7 +43,10 @@ namespace LibroMaestro.Model
                         Integracion integra = new Integracion()
                         {
                             BinaryValue = Convert.ToInt64(reader["Binario"]),
-                            Descripcion = reader["Descripcion"].ToString()
+                            Descripcion = reader["Descripcion"].ToString(),
+                            Tipo = Convert.ToInt32(reader["Tipo"]),
+                            EsObligatorio = Convert.ToBoolean(reader["EsObligatorio"]),
+                            Orden = Convert.ToInt32(reader["Orden"])
                         };
 
                         elementos.Add(integra);

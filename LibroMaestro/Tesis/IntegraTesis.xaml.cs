@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using LibroMaestro.Dto;
 using LibroMaestro.Model;
+using System.Collections.ObjectModel;
+using MahApps.Metro.Controls;
 
 namespace LibroMaestro.Tesis
 {
@@ -16,9 +18,9 @@ namespace LibroMaestro.Tesis
         
         #region Propiedades
 
-        private List<Integracion> listaElementos;
+        private ObservableCollection<Integracion> listaElementos;
 
-        public List<Integracion> ListaElementos
+        public ObservableCollection<Integracion> ListaElementos
         {
             get
             {
@@ -49,36 +51,8 @@ namespace LibroMaestro.Tesis
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (listaElementos == null)
-                listaElementos = new IntegracionModel().GetElementosIntegracion(0);
+                listaElementos = new IntegracionModel().GetElementosIntegracion(2,1);
 
-            LstIntegracion.DataContext = listaElementos;
-        }
-
-        private void ChkEjecutoria_Unchecked(object sender, RoutedEventArgs e)
-        {
-            LblNumEjec.Visibility = Visibility.Collapsed;
-            LblNumVotos.Visibility = Visibility.Collapsed;
-            NumEjec.Visibility = Visibility.Collapsed;
-            NumVotos.Visibility = Visibility.Collapsed;
-
-            NumEjec.Value = 0;
-            NumVotos.Value = 0;
-
-            listaElementos = new IntegracionModel().GetElementosIntegracion(1);
-            LstIntegracion.DataContext = listaElementos;
-        }
-
-        private void ChkEjecutoria_Checked(object sender, RoutedEventArgs e)
-        {
-            LblNumEjec.Visibility = Visibility.Visible;
-            LblNumVotos.Visibility = Visibility.Visible;
-            NumEjec.Visibility = Visibility.Visible;
-            NumVotos.Visibility = Visibility.Visible;
-
-            NumEjec.Value = 1;
-            NumVotos.Value = 0;
-
-            listaElementos = new IntegracionModel().GetElementosIntegracion(0);
             LstIntegracion.DataContext = listaElementos;
         }
 
@@ -97,10 +71,74 @@ namespace LibroMaestro.Tesis
             }
         }
 
+        private void OrdenaLista()
+        {
+            listaElementos = new ObservableCollection<Integracion>(from n in listaElementos
+                                                                   orderby n.Orden
+                                                                   select n);
+        }
 
-        
+        private void AgregaElementos(int tipoElemento)
+        {
+            foreach (Integracion integra in new IntegracionModel().GetElementosIntegracion(2, tipoElemento))
+                listaElementos.Add(integra);
 
-       
+            this.OrdenaLista();
+        }
+
+        private void EliminaElementos(int tipoElemento)
+        {
+            listaElementos = new ObservableCollection<Integracion>(from n in listaElementos
+                                                                   where n.Tipo != tipoElemento
+                                                                   orderby n.Orden
+                                                                   select n);
+            this.OrdenaLista();
+        }
+
+        private void Elements_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch switchy = (ToggleSwitch)sender ;
+            int elementId = Convert.ToInt16(switchy.Uid);
+
+            if (elementId == 2)
+            {
+                LblNumEjec.Visibility = Visibility.Visible;
+                NumEjec.Visibility = Visibility.Visible;
+                NumEjec.Value = 1;
+            }
+            else if (elementId == 3)
+            {
+                LblNumVotos.Visibility = Visibility.Visible;
+                NumVotos.Visibility = Visibility.Visible;
+                NumVotos.Value = 1;
+            }
+
+            this.AgregaElementos(4);
+            LstIntegracion.DataContext = listaElementos;
+
+        }
+
+        private void Elements_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch switchy = (ToggleSwitch)sender;
+            int elementId = Convert.ToInt16(switchy.Uid);
+
+            if (elementId == 2)
+            {
+                LblNumEjec.Visibility = Visibility.Collapsed;
+                NumEjec.Visibility = Visibility.Collapsed;
+                NumEjec.Value = 0;
+            }
+            else if (elementId == 3)
+            {
+                LblNumVotos.Visibility = Visibility.Collapsed;
+                NumVotos.Visibility = Visibility.Collapsed;
+                NumVotos.Value = 0;
+            }
+
+            this.EliminaElementos(4);
+            LstIntegracion.DataContext = listaElementos;
+        }
 
         
     }
